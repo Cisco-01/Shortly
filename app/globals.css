@@ -5,7 +5,7 @@
 @layer components {
   /* Botones */
   .btn {
-    @apply text-white font-bold px-9 py-4 rounded-full transition-all duration-300
+    @apply text-white font-bold px-9 py-4 transition-all duration-300
     bg-teal-400 hover:bg-teal-600 active:bg-teal-700;
   }
 
@@ -16,18 +16,5 @@
 
   .option-mobile-dropdown {
     @apply inline-block p-6 cursor-pointer hover:scale-105 w-auto mx-auto;
-  }
-
-  .rectangle {
-    /* Rectangle 1 */
-
-    position: absolute;
-    width: 1152px;
-    height: 200px;
-    left: 0px;
-    top: 0px;
-
-    /* Extended/purple/900 */
-    background: #581c87;
   }
 }

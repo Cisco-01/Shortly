@@ -37,7 +37,7 @@ const Header = () => {
                 Login
               </span>
             </Link>
-            <button className="ml-3 btn text-white">Sign up</button>
+            <button className="ml-3 btn rounded-full text-white">Sign up</button>
           </div>
 
           {/* burger menu icon */}
@@ -64,7 +64,7 @@ const Header = () => {
             <hr className="border-1 border-[#4B5563]" />
             <div className="py-4 mx-auto text-center space-y-2 grid">
               <span className="option-mobile-dropdown">Login</span>
-              <button className="btn py-3 mx-auto">Sign up</button>
+              <button className="btn rounded-full py-3 mx-auto">Sign up</button>
             </div>
           </div>
         </div>
