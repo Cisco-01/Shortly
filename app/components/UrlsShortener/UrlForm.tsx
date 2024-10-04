@@ -88,7 +88,7 @@ const UrlForm: React.FC<UrlFormProps> = ({
               ? "border-red-400 focus:ring-transparent"
               : success
               ? "border-[#10B981] focus:ring-transparent"
-              : "border-red-400"
+              : "border-transparent"
           } hover:border-[#3B82F6] active:border-[#3B82F6] focus:border-[#3B82F6]`}
         />
 
