@@ -1,3 +1,4 @@
+import Loading from "@/app/loading";
 import CopyButton from "@/utils/copy";
 
 interface ShortenedUrl {
@@ -19,7 +20,6 @@ const UrlList: React.FC<UrlListProps> = ({
   showToast,
   isLoading,
 }) => {
-
   const handleDelete = (id: string) => {
     // Guardar el estado anterior antes de eliminar el enlace
     deleteUrl(id);
@@ -29,7 +29,7 @@ const UrlList: React.FC<UrlListProps> = ({
       {isLoading ? (
         <div className="text-center py-4">
           <legend className="text-gray-600">
-            Loading your shortened URLs...
+            <Loading />
           </legend>
         </div>
       ) : shortenedUrls.length === 0 ? null : (
@@ -52,7 +52,10 @@ const UrlList: React.FC<UrlListProps> = ({
                     https://urlday.cc/{item.shortened}
                   </span>
                   <div className="items-center flex mt-2 md:mt-0">
-                    <CopyButton shortUrl={item.shortened} showToast={showToast}/>
+                    <CopyButton
+                      shortUrl={item.shortened}
+                      showToast={showToast}
+                    />
                     <button
                       onClick={() => handleDelete(item.id)}
                       className="btn rounded-md hover:bg-dark-violet focus:outline-none focus:ring-2 focus:ring-red focus:ring-opacity-50"

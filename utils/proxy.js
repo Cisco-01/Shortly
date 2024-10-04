@@ -3,7 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-const apiKey = process.env.NEXT_PUBLIC_URLDAY_API_KEY;
+const apiKey = process.env.NEXT_URLDAY_API_KEY;
 // Permitir CORS en el servidor proxy
 app.use(cors({ origin: 'http://localhost:3001/' }));
 app.use(express.json());

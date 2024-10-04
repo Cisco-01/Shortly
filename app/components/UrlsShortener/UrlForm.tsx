@@ -64,7 +64,7 @@ const UrlForm: React.FC<UrlFormProps> = ({
     <div
       className={`bg-purple-900 bg-no-repeat bg-cover py-4 ${
         error
-          ? "pb-10 transition-all duration-300 ease-in-out"
+          ? "pb-14 m:pb-10 transition-all duration-300 ease-in-out"
           : "pb-4 transition-all duration-300 ease-in-out"
       } md:py-12 px-8 rounded-lg shadow-lg mb-4`}
       style={{
@@ -88,13 +88,13 @@ const UrlForm: React.FC<UrlFormProps> = ({
               ? "border-red-400 focus:ring-transparent"
               : success
               ? "border-[#10B981] focus:ring-transparent"
-              : "border-transparent"
+              : "border-red-400"
           } hover:border-[#3B82F6] active:border-[#3B82F6] focus:border-[#3B82F6]`}
         />
 
         {/* Error message */}
         {error && (
-          <p className="text-red-500 absolute top-36 md:top-32">
+          <p className="text-red-500 absolute top-40 sm:top-44 md:top-36">
             Please add a link
           </p>
         )}

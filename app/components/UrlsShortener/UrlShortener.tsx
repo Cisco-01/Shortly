@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import UrlForm from "./UrlForm";
 import UrlList from "./UrlList";
+import Loading from "@/app/loading";
 
 type ToastMessage = string;
 type ToastPromiseResult = { success: string; error: string };
@@ -11,8 +12,8 @@ interface ShortenedUrl {
   original: string;
   shortened: string;
 }
-//const API_KEY = process.env.NEXT_PUBLIC_URLDAY_API_KEY;
-//const API_URL = process.env.NEXT_PUBLIC_URLDAY_APIURL;
+//const API_KEY = process.env.NEXT_URLDAY_API_KEY;
+//const API_URL = process.env.NEXT_URLDAY_APIURL;
 
 const UrlShortener = () => {
   const [url, setUrl] = useState("");
@@ -174,7 +175,7 @@ const UrlShortener = () => {
     }
 
     try {
-      // Simular retraso en la respuesta (temporizador de un segundo)
+      // Simular retraso en la respuesta
       const response: ShortenedUrl = await new Promise((resolve) =>
         setTimeout(() => {
           resolve({
@@ -182,7 +183,7 @@ const UrlShortener = () => {
             shortened: Math.random().toString(36).slice(2, 6),
             original: url,
           });
-        }, 1000)
+        }, 2500)
       );
 
       // Actualizar el estado de las URLs acortadas
@@ -249,7 +250,7 @@ const UrlShortener = () => {
           if (!urlExists) {
             const restoredUrls = [...prev, deletedUrl]; // restaura el enlace
             updateLocalStorage(restoredUrls); // Actualiza el almacenamiento local
-            showToast(`Restored: ${deletedUrl.original}`);
+            showToast(`Restored: https://urlday.cc/${deletedUrl.shortened}`);
             return restoredUrls; // Devuelve el nuevo estado
           } else {
             showToast("Link is already restored.");
@@ -317,20 +318,24 @@ const UrlShortener = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8 -inset-y-24 relative" id="urlshortener">
+    <div
+      className="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8 -inset-y-24 relative"
+      id="urlshortener"
+    >
       <UrlForm
         url={url}
         setUrl={setUrl}
         shortenUrl={shortenUrl}
         isLoading={isLoading}
-        
       />
-      <UrlList
-        shortenedUrls={shortenedUrls}
-        deleteUrl={deleteUrl}
-        showToast={showToast}
-        isLoading={isLoading}
-      />
+      <Suspense fallback={<Loading />}>
+        <UrlList
+          shortenedUrls={shortenedUrls}
+          deleteUrl={deleteUrl}
+          showToast={showToast}
+          isLoading={isLoading}
+        />
+      </Suspense>
       {shortenedUrls.length > 0 && (
         <div className="mt-8 text-center">
           <button
